@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Laravel</title>
 
@@ -168,5 +169,49 @@
                 </div>
             </div>
         </div>
+
+
+<br><br><br><br><br>
+
+        <form action="{{url('/api/register')}}" method="post">
+        @csrf
+            <label for="name">name</label>
+            <input type="text" name="name">
+
+            <label for="email">email</label>
+            <input type="email" name="email">
+
+            <label for="password">password</label>
+            <input type="password" name="password">
+
+
+            <label for="password_confirmation">password confirm</label>
+            <input type="password" name="password_confirmation">
+
+            <input type="submit">
+        </form>
+
+
+        <br><br><br><br><br>
+        <h1>Log in :</h1>
+
+        <form action="{{url('/login')}}" method="post">
+            @csrf
+            <label for="email">email</label>
+            <input type="email" name="email">
+
+            <label for="password">password</label>
+            <input type="password" name="password">
+
+            <input type="submit">
+        </form>
+
+<br><br><br><br><br>
+<form action="{{url('/logout')}}" method="post">
+    @csrf
+        <input type="submit" value="logout">
+        </form>
+
+        
     </body>
 </html>

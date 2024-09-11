@@ -12,19 +12,16 @@ class CaregoryController extends Controller
         $items = Category::all();
         return response()->json($items);
     }
-/*
-    public function show($id)
-    {
-        $item = Item::find($id);
-        return response()->json($item);
-    }
+
+
 
     public function store(Request $request)
     {
-        $item = Item::create($request->all());
+        $item = new Category; 
+        $item->category = $request->category;
         return response()->json($item, 201);
     }
-
+/*
     public function update(Request $request, $id)
     {
         $item = Item::find($id);
