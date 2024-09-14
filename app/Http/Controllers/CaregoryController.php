@@ -7,19 +7,19 @@ use App\Models\Category;
 
 class CaregoryController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $items = Category::all();
         return response()->json($items);
     }
-    public function store(Request $request)
-    {
+
+    public function store(Request $request){
        
         $item = new Category;
         $item->category = $request->category;
         $item->save();
         return response()->json($item, 201);
     }
+
 
     public function show($id)
     {
@@ -39,7 +39,8 @@ class CaregoryController extends Controller
 
     public function delete($id)
     {
-        Item::delete($id);
+        $Item = Category::FindOrFail($id);
+        $item->delete();
         return response()->json(null, 204);
     }
         
