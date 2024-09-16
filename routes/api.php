@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CaregoryController;
 use App\Http\Controllers\products;
+use App\Http\Controllers\cartController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,9 +33,14 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/updateCategory/{id}',[CaregoryController::class,'update']);
     Route::post('/deleteCategory/{id}',[CaregoryController::class,'delete']);
 
-    Route::post('/addProduct',[CaregoryController::class,'store']);
-    Route::post('/updateProduct/{id}',[CaregoryController::class,'update']);
-    Route::post('/deleteProduct/{id}',[CaregoryController::class,'delete']);
+    Route::post('/addProduct',[products::class,'store']);
+    Route::post('/updateProduct/{id}',[products::class,'update']);
+    Route::post('/deleteProduct/{id}',[products::class,'delete']);
+
+    Route::post('/addcart',[cartController::class,'store']);
+    Route::post('/updatecart/{id}',[cartController::class,'update']);
+    Route::post('/deletecart/{id}',[cartController::class,'delete']);
+
 });
 
 
@@ -44,7 +51,9 @@ Route::POST('register',[AuthController::class,'register']);
 Route::get('/categoryShow/{id}',[CaregoryController::class,'show']);
 Route::get('/categoryShow',[CaregoryController::class,'index']);
 
-Route::get('/productShow/{id}',[CaregoryController::class,'show']);
-Route::get('/productShow',[CaregoryController::class,'index']);
+Route::get('/productShow/{id}',[products::class,'show']);
+Route::get('/productShow',[products::class,'index']);
 
 
+Route::get('/cartshow/{id}',[cartController::class,'show']);
+Route::get('/cartshow',[cartController::class,'index']);
