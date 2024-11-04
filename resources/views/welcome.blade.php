@@ -213,5 +213,37 @@
         </form>
 
         
+
+
+        <form action="{{url('/api/addProduct')}}" method="post"  enctype ="multipart/form-data">
+                @csrf
+                <label htmlFor="title">Title</label>
+                <input type="text"  name="title"  value={title} id="title" onChange={(e)=> setTitle(e.target.value)}/>
+                
+                <label htmlFor="description">Description</label>
+                <input type="text"  name="description"   value={description} id="description" onChange={(e)=> setDescription(e.target.value)}/>
+                
+                <label htmlFor="category">Category</label>
+                <input type="text"   name="category" value={category} id="category" onChange={(e)=> setCategory(e.target.value)}/>
+
+                <label htmlFor="price">Price</label> 
+                <input type="text"   name="price" value={price} id="price" onChange={(e)=> setPrice(e.target.value)}/>
+                
+                <label htmlFor="discount">Discount</label>
+                <input type="text"    name="discount" value={discount} id="discount" onChange={(e)=> setDiscount(e.target.value)}/>
+                
+                <label htmlFor="image">Image</label>
+                <input type="file" name="image" placeholder="choose image">
+
+
+            
+                <button type="submit">Upload</button>
+
+                    
+                </form>
+
+
+                <a href="/api/deleteProduct/5">delete</a>
+
     </body>
 </html>

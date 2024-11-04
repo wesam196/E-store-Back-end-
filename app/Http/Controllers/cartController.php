@@ -8,8 +8,13 @@ use App\Models\Cart;
 class cartController extends Controller
 {
     public function index(){
-        $items = Cart::all();
-        return response()->json($items);
+        if(Auth::id()){
+            $id = Auth::user()->id;
+            $cart = cart::where('user_id' , '=' ,$id) ->get();
+            return response()->json($cart);
+        }
+        
+       
     }
 
     public function store(Request $request){

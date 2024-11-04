@@ -11,10 +11,12 @@ class products extends Controller
     public function index(){
         $item = prodects::all();
 
-        return response()->json($items);
+        return response()->json($item);
     }
 
     public function store(Request $request){
+     
+
         $item = new prodects;
 
         $item->title = $request->title;
@@ -36,7 +38,7 @@ class products extends Controller
 
     public function show($id){
         $item = prodects::find($id);
-        return response()->json($items);
+        return response()->json($item);
     }
 
     public function update(Request $request, $id){
@@ -58,12 +60,19 @@ class products extends Controller
         return response()->json($item, 200);
     }
 
-    public function delete($id){
-        $item::FindOrFail($id);
+    public function delete($id) {
+        $item = prodects::findOrFail($id); // Corrected spelling of 'products'
+        
+        $path = 'product/' . $item->image; // Adjust if your file structure differs
 
+        // Check if the file exists in the public directory and delete it
+        if (file_exists(public_path($path))) { // Use public_path() to get the absolute path
+            unlink(public_path($path)); // Delete the file using unlink()
+        }    
+       
+    
         $item->delete();
         return response()->json(null, 204);
-
     }
 
 }

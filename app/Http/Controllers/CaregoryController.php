@@ -9,7 +9,7 @@ class CaregoryController extends Controller
 {
     public function index(){
         $items = Category::all();
-        return response()->json($items);
+        return response()->json($items,201);
     }
 
     public function store(Request $request){

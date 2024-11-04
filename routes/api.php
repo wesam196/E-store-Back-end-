@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CaregoryController;
 use App\Http\Controllers\products;
 use App\Http\Controllers\cartController;
-
+use App\Http\Controllers\RequestController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,6 +40,13 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/addcart',[cartController::class,'store']);
     Route::post('/updatecart/{id}',[cartController::class,'update']);
     Route::post('/deletecart/{id}',[cartController::class,'delete']);
+
+
+    Route::get('/showRequests',[RequestController::class,'index']);
+    Route::post('/addrequest',[RequestController::class,'store']);
+    Route::post('/showRequests/{id}',[RequestController::class,'show']);
+    Route::post('/deletRequests/{id}',[RequestController::class,'delete']);
+
 
 });
 
