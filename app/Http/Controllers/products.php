@@ -49,12 +49,24 @@ class products extends Controller
         $item->price = $request->price;
         $item->discount = $request->discount;
 
-        $image = $request->image;
+        
+        
+        if($request->image !=null){
+            $path = 'product/' . $item->image; // Adjust if your file structure differs
+
+        // Check if the file exists in the public directory and delete it
+        if (file_exists(public_path($path))) { // Use public_path() to get the absolute path
+            unlink(public_path($path)); // Delete the file using unlink()
+        }    
+
+            $image = $request->image;
         $imageName=time().'.'.$request->image->getClientOriginalExtension();
         $request->image->move('product' , $imageName);
 
         $item->image =$imageName;
 
+        
+        }
         $item->save();
 
         return response()->json($item, 200);
